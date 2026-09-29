@@ -61,3 +61,42 @@ del repositorio (Es obligatorio hacer desde la terminal grafica web de github)
     - La mejor manera de entender los conflictos fue con los marcadores explícitos, es una manera muy visual que tiene github de mostrar los conflictos entre autores, además que resalta a la vista cuando un trozo de código empieza y termina de cada autor.
 
         – Marcadores explícitos <<<<<<<, =======, >>>>>>>
+
+7. Roles: ¿qué puede hacer un Maintain que no pueda un Write? ¿Quién podría haber quitado la protección de main?
+ 
+El rol de Maintain tiene privilegios casi administrativos entre ellos:
+
+– Modificar configuración general del repositorio (Nombre, Visibilidad, Descripción)
+
+– Puede añadir, eliminar o modificar los permisos de otros miembros dentro del repositorio
+
+– Puede configurar servicios externos, webhooks y herramientas conectadas al repositorio.
+
+– Tiene mayor control sobre la gestión de ramas y flujos de trabajo.
+
+– El Rol de write está supeditado a leer, escribir código, abrir Pull Requests y hacer    fusiones permitidas.
+
+Los roles de Maintain y Write no tienen permisos para modificar o desactivar reglas de protección de la rama main, por lo que el único que podia quitar la protección de main era el
+admin, o en su defecto los usuarios con propiedad de owner.
+
+8. Si mañana un miembro sube un force push a main, ¿qué se pierde y qué lo impide en vuestro repositorio?
+
+“git push --force” reescribe todo el historial del repositorio con tu rama local si se hace desde main, eso quiere decir que todo el trabajo o commit hecho por otros colaboradores se perderá en el caso de que la rama local de quien lo haga no esté actualizada con los cambios de los demás colaboradores.
+
+En nuestro caso lo impide las reglas que ha declarado el administrador cuando se protege la rama main, estas son.
+
+– La prohibición explícita de force push
+
+– La prohibición de push directo
+
+9. En la Fase 1 compartíais un portátil y en la Fase 2 cada uno tenía el suyo. ¿Qué diferencia práctica tiene eso para la identidad del autor de cada commit y para cómo aparecen los conflictos?
+
+Al trabajar tres personas desde un mismo equipo en local teníamos que usar el comando:
+
+git config --globaluser.name "nombre del miembro"
+
+git config --globaluser.email "correo del miembro"
+
+Para así poder dejarregistro de quién realizaba los cambios pertinentes dentro de los documentos.
+
+Al trabajar en local no había ningún problema a la hora de realizar ningún “git push” ya que no hay ninguna incompatibilidad entre los ficheros, los problemas vienen a la hora de trabajar cada uno con su equipo, ya que realizamos “git push” donde hay archivos y líneas que hemos editado todos y ahí es donde dan los problemas.
